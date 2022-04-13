@@ -17,26 +17,16 @@
             </div>
         </div>
         <div class="header-min">
+          @foreach($promos as $promo)
             <div class="header-min-item product-style-25 bg_cover"
-                 style="background-image: url({{asset('frontend/assets/images/header-1/header-min-1.jpg')}});">
+                 style="background-image: url({{$promo->photo}});">
                 <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html">Metro 38 Date</a></h4>
-                    <p>Reference 1102</p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> <img
-                            src="{{asset('frontend/assets/images/icon-svg/cart-5.svg')}}" alt="">$
-                        399</a>
+                    <h4 class="title"><a href="product-details-page.html">{{$promo->title}}</a></h4>
+                    <p>{!! html_entity_decode($promo->description) !!}</p>
+                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> Vezi mai multe</a>
                 </div>
             </div>
-            <div class="header-min-item product-style-25 bg_cover"
-                 style="background-image: url({{asset('frontend/assets/images/header-1/header-min-2.jpg')}});">
-                <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html">Metro 38 Date</a></h4>
-                    <p>Reference 1102</p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> <img
-                            src="{{asset('frontend/assets/images/icon-svg/cart-5.svg')}}" alt="">$
-                        399</a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
     <section class="content-card-style-4 pt-70 pb-100">

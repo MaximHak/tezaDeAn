@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -90,8 +91,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $cities = City::where(['status'=>'active'])->get();
         if ($user) {
-            return view('backend.user.edit', compact('user'));
+            return view('backend.user.edit', compact('user','cities'));
         } else {
             return back()->with('error', 'Data not found');
         }
@@ -106,12 +108,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $user = User::find($id);
         if ($user) {
             $this->validate($request, [
                 'full_name' => 'string|required',
                 'username' => 'required',
-                'email' => 'email|nullable|unique:users,email',
+                'email' => 'email|nullable',
                 'phone' => 'numeric|nullable',
                 'photo' => 'string|required',
                 'address' => 'string|nullable',

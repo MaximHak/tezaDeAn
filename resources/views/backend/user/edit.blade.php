@@ -67,7 +67,7 @@
                                                     <label for="first-name-column">Email</label>
                                                     <input type="email" id="first-name-column" class="form-control"
                                                            placeholder="email" name="email"
-                                                           value="{{$user->username}}">
+                                                           value="{{$user->email}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
@@ -94,7 +94,8 @@
                                                                                          data-preview="holder"
                                                                                          class="btn btn-primary"><i
                                                                     class="fa fa-picture-o"></i> Choose</a></span>
-                                                        <input id="thumbnail" class="form-control" type="text"
+                                                        <input id="thumbnail" value="{{$user->photo}}"
+                                                               class="form-control" type="text"
                                                                name="photo">
                                                     </div>
                                                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
@@ -122,21 +123,19 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="country-floating">Status</label>
-                                                    <select class="form-select" name="status" id="status">
-                                                        <option value="">--Status--</option>
-                                                        <option
-                                                            value="active" {{$user->status === 'active' ? 'selected' : ''}}>
-                                                            Active
-                                                        </option>
-                                                        <option
-                                                            value="inactive" {{$user->status === 'inactive' ? 'selected' : ''}}>
-                                                            Inactive
-                                                        </option>
-
-                                                    </select>
+                                                    <label for="country-floating">Cities</label>
+                                                    <ul class="list-group">
+                                                        @foreach($cities as $city)
+                                                            <li class="list-group-item">
+                                                                <input name="city[]" class="form-check-input me-1" type="checkbox"
+                                                                       value="{{$city->id}}" aria-label="...">
+                                                            {{$city->title}}
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">Submit
                                                 </button>

@@ -21,11 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->enum('role',['admin','vendor','customer'])->default('customer');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
         });
     }

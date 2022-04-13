@@ -15,3 +15,4 @@
 <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.svg')}}" type="image/x-icon">
 <link rel="stylesheet" href="{{asset('backend/assets/css/pages/auth.css')}}">
 <link rel="stylesheet" href="{{asset('backend/assets/vendors/simple-datatables/style.css')}}">
+<link rel="stylesheet" href="{{asset('backend/assets/vendors/choices.js/choices.min.css')}}" />

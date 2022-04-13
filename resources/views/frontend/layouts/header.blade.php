@@ -281,7 +281,19 @@
                                         <option value="6">বাংলা</option>
                                     </select>
                                 </li>
-                                <li><a href="login-page.html"><i class="mdi mdi-account"></i>Login</a></li>
+                                <li>
+                                   @auth()
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            <i class="mdi mdi-account"></i>Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    @else
+                                    <a href="{{route('login')}}"><i class="mdi mdi-account"></i>Login</a>
+                                    @endauth
+                                </li>
                             </ul>
                         </div>
                         <!-- navbar top right Ends -->

@@ -26,12 +26,14 @@ use Illuminate\Support\Facades\Route;
 
 
 //FrontEnd
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/', [IndexController::class, 'home'])->name('home');
 //EndFront
 
+});
 
-Auth::routes(['register' => false]);
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Auth::routes(['register' => true]);
+
 
 
 //Admin dashboard
