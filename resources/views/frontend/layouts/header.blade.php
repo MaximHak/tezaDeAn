@@ -221,7 +221,7 @@
                         </select>
                     </div>
                     <div class="search-input">
-                        <input type="text" placeholder="Search">
+                        <input style="width: 1000px;" type="text" placeholder="Search products and stores">
                     </div>
                     <div class="search-btn">
                         <button><i class="lni lni-search-alt"></i></button>
@@ -299,85 +299,9 @@
                             <a href="index.html"><img src="{{asset('frontend/assets/images/logo.svg')}}" alt="Logo"></a>
                         </div>
                         <!-- desktop logo Ends -->
-                        <!-- navbar menu Start -->
-                        <div class="navbar-menu">
-                            <ul class="main-menu">
-                                <li class="position-static menu-item-has-children">
-                                    <a href="#">Womans</a>
-                                    <!-- sub mega dropdown Start -->
-                                    <ul class="sub-mega-dropdown">
-                                        <li>
-                                            <div class="mega-dropdown-menu">
-                                                <ul class="container mega-dropdown d-flex flex-wrap">
-                                                    <li class="mega-dropdown-list menu-item-has-children">
-                                                        <h6 class="heading-6 font-weight-500 mega-title">New Arrivals
-                                                        </h6>
-                                                        <ul>
-                                                            <li><a href="category.html">Dresses</a></li>
-                                                            <li><a href="category.html">Jackets</a></li>
-                                                            <li><a href="category.html">Hoodies & Sweatshirts</a></li>
-                                                            <li><a href="category.html">Sweaters</a></li>
-                                                            <li><a href="category.html">Tops & Tees</a></li>
-                                                            <li><a href="category.html">Party Dresses</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-dropdown-list menu-item-has-children">
-                                                        <h6 class="heading-6 font-weight-500 mega-title">Trending</h6>
-                                                        <ul>
-                                                            <li><a href="category.html">Dresses</a></li>
-                                                            <li><a href="category.html">Jackets</a></li>
-                                                            <li><a href="category.html">Hoodies & Sweatshirts</a></li>
-                                                            <li><a href="category.html">Sweaters</a></li>
-                                                            <li><a href="category.html">Tops & Tees</a></li>
-                                                            <li><a href="category.html">Party Dresses</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-dropdown-list menu-item-has-children">
-                                                        <h6 class="heading-6 font-weight-500 mega-title">Accessories
-                                                        </h6>
-                                                        <ul>
-                                                            <li><a href="category.html">Hoodies & Sweatshirts</a></li>
-                                                            <li><a href="category.html">Jackets & Coats</a></li>
-                                                            <li><a href="category.html">Pants</a></li>
-                                                            <li><a href="category.html">Jeans</a></li>
-                                                            <li><a href="category.html">Tops & Tees</a></li>
-                                                            <li><a href="category.html">Casual Shorts</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-dropdown-list">
-                                                        <img src="{{asset('frontend/assets/images/menu-slider-1.png')}}" alt="">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <!-- sub mega dropdown Ends -->
-                                </li>
-                                <li><a href="category.html">mens</a></li>
-                                <li><a href="category.html">Kids</a></li>
-                                <li><a href="category.html">Accessories</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Pages</a>
-                                    <!-- sub menu Start -->
-                                    <ul class="sub-menu">
-                                        <li><a href="about-page.html">About Page</a></li>
-                                        <li><a href="account-page.html">Account Page</a></li>
-                                        <li><a href="cart-page.html">Cart Page</a></li>
-                                        <li><a href="category.html">Category Page</a></li>
-                                        <li><a href="checkout-page.html">Checkout Page</a></li>
-                                        <li><a href="contact-page.html">Contact Page</a></li>
-                                        <li><a href="login-page.html">Log In Page</a></li>
-                                        <li><a href="product-details-page.html">Product Details Page</a></li>
-                                        <li><a href="signup-page.html">Sign Up Page</a></li>
-                                    </ul>
-                                    <!-- sub menu Ends -->
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- navbar menu Ends -->
-                        <div class="navbar-search-cart d-none d-lg-flex">
+                        <div style="padding: 17px 0;" class="navbar-search-cart d-none d-lg-flex">
                             <!-- navbar search start -->
-                            <div class="navbar-search search-style-5">
+                            <div  class="navbar-search search-style-5">
                                 <div class="search-select">
                                     <select>
                                         <option value="">All</option>
@@ -389,7 +313,7 @@
                                     </select>
                                 </div>
                                 <div class="search-input">
-                                    <input type="text" placeholder="Search">
+                                    <input style="width: 1000px;" type="text" placeholder="Search products and stores">
                                 </div>
                                 <div class="search-btn">
                                     <button><i class="lni lni-search-alt"></i></button>

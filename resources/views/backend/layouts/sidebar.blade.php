@@ -88,6 +88,22 @@
                 <li
                     class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
+                        <i class="bi bi-building"></i>
+                        <span>Cities Management</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{route('city.index')}}">All cities</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{route('city.create')}}">Add cities</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li
+                    class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-bag-plus"></i>
                         <span>Carts Management</span>
                     </a>
@@ -217,7 +233,7 @@
                     class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-chat-left-dots"></i>
-                        <span>Comments Management</span>
+                        <span>Comments section Management</span>
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
