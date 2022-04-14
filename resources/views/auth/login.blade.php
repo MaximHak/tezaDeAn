@@ -27,7 +27,7 @@
                     <div class="form-group position-relative has-icon-left mb-4">
 
                         <input type="text" class="form-control form-control-xl @error('email') is-invalid @enderror"
-                               name="username" value="{{ old('email') }}" required autocomplete="email" autofocus
+                               name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
                                placeholder="Email">
                         <div class="form-control-icon">
                             <i class="bi bi-envelope"></i>

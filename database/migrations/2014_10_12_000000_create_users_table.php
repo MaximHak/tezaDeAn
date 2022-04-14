@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('address')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
-            $table->enum('role',['admin','vendor','customer'])->default('customer');
+            $table->enum('role',['admin','seller','customer'])->default('customer');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

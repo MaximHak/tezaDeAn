@@ -38,9 +38,9 @@
                             <i class="mdi mdi-truck-fast"></i>
                         </div>
                         <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">Two-hour delivery</a></h4>
-                            <p>Available in most metros on selected in-stock products</p>
-                            <a href="javascript:void(0)" class="more">learn more</a>
+                            <h4 class="title"><a href="javascript:void(0)">Cea mai rapida livrare din tara</a></h4>
+                            <p>Este disponibila pentru majoritatea comenzilor</p>
+                            <a href="javascript:void(0)" class="more">Vezi detalii</a>
                         </div>
                     </div>
                 </div>
@@ -50,9 +50,9 @@
                             <i class="mdi mdi-message-text"></i>
                         </div>
                         <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">Get help buying</a></h4>
-                            <p>Have a question? Call a Specialist or chat online for help</p>
-                            <a href="contact-page.html" class="more">Contact us</a>
+                            <h4 class="title"><a href="javascript:void(0)">Recenzii urmarite si respectate</a></h4>
+                            <p>Ai o întrebare? Apelați un specialist sau discutați online pentru ajutor</p>
+                            <a href="contact-page.html" class="more">Pagina de contacte</a>
                         </div>
                     </div>
                 </div>
@@ -62,9 +62,9 @@
                             <i class="mdi mdi-ticket-percent"></i>
                         </div>
                         <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">Find the card for you</a></h4>
-                            <p>Get 3% Daily Cash with special financing offers from us</p>
-                            <a href="javascript:void(0)" class="more">learn more</a>
+                            <h4 class="title"><a href="javascript:void(0)">Gaseste reduceri zilnice</a></h4>
+                            <p>Partenerii nostri sunt dispusi sa lucreze pentru apricierea voastra</p>
+                            <a href="javascript:void(0)" class="more">Citeste mai mult</a>
                         </div>
                     </div>
                 </div>

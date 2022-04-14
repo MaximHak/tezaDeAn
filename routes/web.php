@@ -37,7 +37,7 @@ Auth::routes(['register' => true]);
 
 
 //Admin dashboard
-Route::group(['prefix' => 'admin/', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin/', 'middleware' => ['auth','admin']], function () {
     Route::get('/', [AdminController::class, 'admin'])->name('admin');
 
     //Banner
@@ -66,4 +66,8 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth'], function () {
     Route::post('city_status', [CityController::class, 'cityStatus'])->name('city.status');
 
 
+});
+
+Route::group(['prefix' => 'seller/', 'middleware' => ['auth','seller']], function () {
+    Route::get('/', [AdminController::class, 'admin'])->name('seller');
 });

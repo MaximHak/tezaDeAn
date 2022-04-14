@@ -19,7 +19,7 @@ class UserFactory extends Factory
             'full_name' => $this->faker->name,
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
-            'role' => $this->faker->randomElement(['admin','vendor','customer']),
+            'role' => $this->faker->randomElement(['admin','seller','customer']),
             'status' => $this->faker->randomElement(['active','inactive']),
             'photo' => $this->faker->imageUrl('60','60'),
             'email' => $this->faker->unique()->safeEmail(),

@@ -229,8 +229,11 @@
                                 </li>
                             </ul>
                             <h4 class="title"><a href="product-details-page.html">{{$vendor->username}}</a></h4>
-                            <p>{{$vendor->full_name}}</p>
-                            <span class="price">Aici tipa orasul ar trebui sa fie!!!</span>
+
+                            @php
+
+                            @endphp
+                            <span class="price">{{\App\Models\City::where('id',$vendor->city_id)->value('title');}}</span>
                             <a href="javascript:void(0)" class="main-btn primary-btn">
                                 Vezi mai mult produse
                             </a>
@@ -332,22 +335,22 @@
         <div class="row client-logo-active">
             <div class="col-lg-3">
                 <div class="single-logo-wrapper">
-                    <img src="{{asset('frontend/')}}assets/images/client-logo/uideck-logo.svg" alt="">
+                    <img src="{{asset('frontend/assets/images/client-logo/uideck-logo.svg')}}" alt="">
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="single-logo-wrapper">
-                    <img src="{{asset('frontend/')}}assets/images/client-logo/graygrids-logo.svg" alt="">
+                    <img src="{{asset('frontend/assets/images/client-logo/graygrids-logo.svg')}}" alt="">
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="single-logo-wrapper">
-                    <img src="{{asset('frontend/')}}assets/images/client-logo/lineicons-logo.svg" alt="">
+                    <img src="{{asset('frontend/assets/images/client-logo/lineicons-logo.svg')}}" alt="">
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="single-logo-wrapper">
-                    <img src="{{asset('frontend/')}}assets/images/client-logo/pagebulb-logo.svg" alt="">
+                    <img src="{{asset('frontend/assets/images/client-logo/pagebulb-logo.svg')}}" alt="">
                 </div>
             </div>
         </div>
@@ -367,7 +370,7 @@
                     </br>
                     <a href="https://rebrand.ly/estore-gg" rel="nofollow" target="_blank"
                        class="main-btn secondary-1-btn">
-                        <img src="{{asset('frontend/')}}assets/images/icon-svg/cart-7.svg" alt="">
+                        <img src="{{asset('frontend/assets/images/icon-svg/cart-7.svg')}}" alt="">
                         PURCHASE NOW
                     </a>
                 </div>

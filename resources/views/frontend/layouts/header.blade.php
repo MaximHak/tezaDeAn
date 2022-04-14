@@ -41,8 +41,9 @@
                                                 <td class="checkout-product">
                                                     <div class="product-cart d-flex">
                                                         <div class="product-thumb">
-                                                            <img src="{{asset('frontend/assets/images/product-cart/product-1.png')}}"
-                                                                 alt="Product">
+                                                            <img
+                                                                src="{{asset('frontend/assets/images/product-cart/product-1.png')}}"
+                                                                alt="Product">
                                                         </div>
                                                         <div class="product-content media-body">
                                                             <h5 class="title">
@@ -79,12 +80,14 @@
                                                 <td class="checkout-product">
                                                     <div class="product-cart d-flex">
                                                         <div class="product-thumb">
-                                                            <img src="{{asset('frontend/assets/images/product-cart/product-2.png')}}"
-                                                                 alt="Product">
+                                                            <img
+                                                                src="{{asset('frontend/assets/images/product-cart/product-2.png')}}"
+                                                                alt="Product">
                                                         </div>
                                                         <div class="product-content media-body">
                                                             <h5 class="title">
-                                                                <a href="product-details-page.html">Mist Black Triblend</a>
+                                                                <a href="product-details-page.html">Mist Black
+                                                                    Triblend</a>
                                                             </h5>
                                                             <ul>
                                                                 <li><span>Brown</span></li>
@@ -117,8 +120,9 @@
                                                 <td class="checkout-product">
                                                     <div class="product-cart d-flex">
                                                         <div class="product-thumb">
-                                                            <img src="{{asset('frontend/assets/images/product-cart/product-3.png')}}"
-                                                                 alt="Product">
+                                                            <img
+                                                                src="{{asset('frontend/assets/images/product-cart/product-3.png')}}"
+                                                                alt="Product">
                                                         </div>
                                                         <div class="product-content media-body">
                                                             <h5 class="title">
@@ -155,12 +159,14 @@
                                                 <td class="checkout-product">
                                                     <div class="product-cart d-flex">
                                                         <div class="product-thumb">
-                                                            <img src="{{asset('frontend/assets/images/product-cart/product-4.png')}}"
-                                                                 alt="Product">
+                                                            <img
+                                                                src="{{asset('frontend/assets/images/product-cart/product-4.png')}}"
+                                                                alt="Product">
                                                         </div>
                                                         <div class="product-content media-body">
                                                             <h5 class="title">
-                                                                <a href="product-details-page.html">Circular Sienna</a></h5>
+                                                                <a href="product-details-page.html">Circular Sienna</a>
+                                                            </h5>
                                                             <ul>
                                                                 <li><span>Brown</span></li>
                                                                 <li><span>XL</span></li>
@@ -282,16 +288,17 @@
                                     </select>
                                 </li>
                                 <li>
-                                   @auth()
+                                    @auth()
                                         <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                           onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                             <i class="mdi mdi-account"></i>Logout</a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              class="d-none">
                                             @csrf
                                         </form>
                                     @else
-                                    <a href="{{route('login')}}"><i class="mdi mdi-account"></i>Login</a>
+                                        <a href="{{route('login')}}"><i class="mdi mdi-account"></i>Login</a>
                                     @endauth
                                 </li>
                             </ul>
@@ -301,19 +308,20 @@
                 </div>
             </div>
             <!-- navbar top Ends -->
-
             <!-- main navbar Start -->
             <div class="navbar-wrapper">
                 <div class="container-lg">
                     <nav class="main-navbar d-lg-flex justify-content-between align-items-center">
                         <!-- desktop logo Start -->
                         <div class="desktop-logo d-none d-lg-block">
-                            <a href="index.html"><img src="{{asset('frontend/assets/images/logo.svg')}}" alt="Logo"></a>
+                            <a href="index.html">
+                                <img style="height: 34px;" src="{{asset('frontend/assets/images/Untitled.png')}}" alt="Logo">
+                            </a>
                         </div>
                         <!-- desktop logo Ends -->
                         <div style="padding: 17px 0;" class="navbar-search-cart d-none d-lg-flex">
                             <!-- navbar search start -->
-                            <div  class="navbar-search search-style-5">
+                            <div class="navbar-search search-style-5">
                                 <div class="search-select">
                                     <select>
                                         <option value="">All</option>
@@ -334,11 +342,20 @@
                             <!-- navbar search Ends -->
                             <!-- navbar cart start -->
                             <div class="navbar-cart">
-                                <a class="icon-btn primary-icon-text icon-text-btn" href="javascript:void(0)">
-                                    <img src="{{asset('frontend/assets/images/icon-svg/cart-1.svg')}}" alt="Icon">
-                                    <span class="icon-text text-style-1">88</span>
-                                </a>
-
+                                <div class="row">
+                                    <a class="icon-btn primary-icon-text icon-text-btn" href="javascript:void(0)">
+                                        <img src="{{asset('frontend/assets/images/icon-svg/cart-1.svg')}}" alt="Icon">
+                                        <span class="icon-text text-style-1">88</span>
+                                    </a>
+                                    @auth
+{{--                                        @if(empty($user_city))--}}
+{{--                                        <a class="icon-btn primary-icon-text icon-text-btn" href="javascript:void(0)">--}}
+{{--                                            <i class="mdi mdi-web"></i>--}}
+{{--                                            {{$user_city[0]->title}}--}}
+{{--                                        </a>--}}
+{{--                                        @endif--}}
+                                    @endauth
+                                </div>
                                 <div class="navbar-cart-dropdown">
                                     <div class="checkout-style-2">
                                         <div class="checkout-header d-flex justify-content-between">
@@ -352,8 +369,9 @@
                                                     <td class="checkout-product">
                                                         <div class="product-cart d-flex">
                                                             <div class="product-thumb">
-                                                                <img src="{{asset('frontend/assets/images/product-cart/product-1.png')}}"
-                                                                     alt="Product">
+                                                                <img
+                                                                    src="{{asset('frontend/assets/images/product-cart/product-1.png')}}"
+                                                                    alt="Product">
                                                             </div>
                                                             <div class="product-content media-body">
                                                                 <h5 class="title">
@@ -390,12 +408,14 @@
                                                     <td class="checkout-product">
                                                         <div class="product-cart d-flex">
                                                             <div class="product-thumb">
-                                                                <img src="{{asset('frontend/assets/images/product-cart/product-2.png')}}"
-                                                                     alt="Product">
+                                                                <img
+                                                                    src="{{asset('frontend/assets/images/product-cart/product-2.png')}}"
+                                                                    alt="Product">
                                                             </div>
                                                             <div class="product-content media-body">
                                                                 <h5 class="title">
-                                                                    <a href="product-details-page.html">Mist Black Triblend</a>
+                                                                    <a href="product-details-page.html">Mist Black
+                                                                        Triblend</a>
                                                                 </h5>
                                                                 <ul>
                                                                     <li><span>Brown</span></li>
@@ -428,8 +448,9 @@
                                                     <td class="checkout-product">
                                                         <div class="product-cart d-flex">
                                                             <div class="product-thumb">
-                                                                <img src="{{asset('frontend/assets/images/product-cart/product-3.png')}}"
-                                                                     alt="Product">
+                                                                <img
+                                                                    src="{{asset('frontend/assets/images/product-cart/product-3.png')}}"
+                                                                    alt="Product">
                                                             </div>
                                                             <div class="product-content media-body">
                                                                 <h5 class="title">
@@ -466,12 +487,14 @@
                                                     <td class="checkout-product">
                                                         <div class="product-cart d-flex">
                                                             <div class="product-thumb">
-                                                                <img src="{{asset('frontend/assets/images/product-cart/product-4.png')}}"
-                                                                     alt="Product">
+                                                                <img
+                                                                    src="{{asset('frontend/assets/images/product-cart/product-4.png')}}"
+                                                                    alt="Product">
                                                             </div>
                                                             <div class="product-content media-body">
                                                                 <h5 class="title">
-                                                                    <a href="product-details-page.html">Circular Sienna</a>
+                                                                    <a href="product-details-page.html">Circular
+                                                                        Sienna</a>
                                                                 </h5>
                                                                 <ul>
                                                                     <li><span>Brown</span></li>

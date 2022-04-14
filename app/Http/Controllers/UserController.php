@@ -108,7 +108,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+
         $user = User::find($id);
         if ($user) {
             $this->validate($request, [
@@ -123,6 +123,7 @@ class UserController extends Controller
             ]);
             $data = $request->all();
             $data['password'] = Hash::make($request->password);
+            $data['city_id'] = intval($data['city_id']);
             $status = $user->fill($data)->save();
             if ($status) {
                 return redirect()->route('user.index')->with('success', 'User was updated!');

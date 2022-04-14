@@ -31,7 +31,7 @@ class UsersTabelSeeder extends Seeder
                'username'=>'Vendor',
                'email'=>'vendor@gmail.com',
                'password'=>Hash::make('111'),
-               'role'=>'vendor',
+               'role'=>'seller',
                'status'=>'active'
            ],
            //Customer

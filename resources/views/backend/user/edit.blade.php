@@ -127,15 +127,14 @@
                                                     <ul class="list-group">
                                                         @foreach($cities as $city)
                                                             <li class="list-group-item">
-                                                                <input name="city[]" class="form-check-input me-1" type="checkbox"
-                                                                       value="{{$city->id}}" aria-label="...">
+                                                                <input name="city_id" class="form-check-input me-1" type="checkbox"
+                                                                       {{$user->city_id === $city->id ? 'checked' : ''}}       value="{{$city->id}}">
                                                             {{$city->title}}
                                                             </li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
-
                                             <div class="col-12 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">Submit
                                                 </button>
