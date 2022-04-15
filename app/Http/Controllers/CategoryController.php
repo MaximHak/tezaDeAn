@@ -54,7 +54,6 @@ class CategoryController extends Controller
         $this->validate($request, [
             'title' => 'string|required',
             'summary' => 'string|nullable',
-            'photo' => 'required',
             'is_parent' => 'sometimes|in:1',
             'parent_id' => 'nullable',
             'status' => 'nullable|in:active,inactive',
@@ -125,7 +124,6 @@ class CategoryController extends Controller
             $this->validate($request, [
                 'title' => 'string|required',
                 'summary' => 'string|nullable',
-                'photo' => 'required',
                 'is_parent' => 'sometimes|in:1,0',
                 'parent_id' => 'nullable|exists:categories,id',
                 'status' => 'nullable|in:active,inactive',

@@ -234,7 +234,7 @@
 
                             @endphp
                             <span class="price">{{\App\Models\City::where('id',$vendor->city_id)->value('title');}}</span>
-                            <a href="javascript:void(0)" class="main-btn primary-btn">
+                            <a href="{{route('product')}}" class="main-btn primary-btn">
                                 Vezi mai mult produse
                             </a>
                         </div>

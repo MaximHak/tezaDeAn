@@ -63,6 +63,12 @@ class UserController extends Controller
         ]);
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
+        $slug = Str::slug($request->input('username'));
+        $slug_count = User::where('slug', $slug)->count();
+        if ($slug_count > 0) {
+            $slug .= time() . '-' . $slug;
+        }
+        $data['slug'] = $slug;
         $status = User::create($data);
         if ($status) {
             return redirect()->route('user.index')->with('success', 'User was created!');
@@ -122,6 +128,7 @@ class UserController extends Controller
                 'status' => 'nullable|in:active,inactive',
             ]);
             $data = $request->all();
+
             $data['password'] = Hash::make($request->password);
             $data['city_id'] = intval($data['city_id']);
             $status = $user->fill($data)->save();
