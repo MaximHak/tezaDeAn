@@ -22,7 +22,6 @@ class IndexController extends Controller
         $vendors = User::where(['status' => 'active', 'role' => 'seller'])->limit(5)->orderBy('id', 'DESC')->get();
         $user_city = City::where('id', $user->city_id)->get();
         $products = Product::where(['status' => 'active'])->limit(8)->get();
-
         return view('frontend.index', compact(['banners', 'products', 'categories', 'promos', 'vendors', 'user', 'user_city']));
     }
 
@@ -30,17 +29,13 @@ class IndexController extends Controller
     {
         $products = Product::where(['status' => 'active'])->get();
         $categories = Category::with('children')->whereNull('parent_id')->orderBy('id', 'desc')->get();
-
-        return view('frontend.shop',compact(['products','categories']));
+        return view('frontend.shop', compact(['products', 'categories']));
     }
 
-    public function getProductByID(Request $request){
-        $product = Product::where('id',$request->id)->get();
-        if(!is_null($product))
-        {
-            return view('frontend.layouts.modal', compact('product'));
-        }else{
-            return response()->json(['msg' => 'Some error', 'status' => false]);
-        }
+    public function getProductByID($id)
+    {
+        $product = Product::where('id', $id)->get()->first();
+        $products = Product::where(['status' => 'active'])->get();
+        return view('frontend.product', compact('product','products'));
     }
 }

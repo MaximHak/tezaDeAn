@@ -78,7 +78,7 @@
                                         <div class="card-body">
                                             <p>{{\App\Models\User::where('id',$product->vendor_id)->pluck('username')->first()}}</p>
                                             <h4 style="height: 60px;" class="card-product__title"><a
-                                                    href="single-product.html">{{ $product->title }}</a>
+                                                    href="{{route('product.getProductByID',$product->id)}}">{{ $product->title }}</a>
                                             </h4>
                                             @if($product->offer_price === NULL)
                                                 <p class="card-product__price">{{ $product->price }} MDL</p>

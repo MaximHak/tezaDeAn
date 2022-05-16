@@ -31,7 +31,7 @@ Route::get('/', [IndexController::class, 'home'])->name('home');
 
 //Product get
     Route::get('products',[IndexController::class,'productCategory'])->name('products');
-    Route::post('getProductByID',[IndexController::class,'getProductByID'])->name('product.getProductByID');
+    Route::get('getProductByID/{id}',[IndexController::class,'getProductByID'])->name('product.getProductByID');
 //EndFront
 
 });
