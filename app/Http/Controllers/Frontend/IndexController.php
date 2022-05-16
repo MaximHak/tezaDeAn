@@ -21,13 +21,15 @@ class IndexController extends Controller
         $categories = Category::where(['status' => 'active', 'is_parent' => 1])->limit(3)->orderBy('id', 'DESC')->get();
         $vendors = User::where(['status' => 'active', 'role' => 'seller'])->limit(5)->orderBy('id', 'DESC')->get();
         $user_city = City::where('id', $user->city_id)->get();
-        return view('frontend.index', compact(['banners', 'categories', 'promos', 'vendors', 'user', 'user_city']));
+        $products = Product::where(['status' => 'active'])->limit(8)->get();
+
+        return view('frontend.index', compact(['banners', 'products', 'categories', 'promos', 'vendors', 'user', 'user_city']));
     }
 
     public function productCategory()
     {
         $products = Product::where(['status' => 'active'])->get();
-        $categories = Category::where(['status' => 'active','is_parent'=>1,'id'=>21])->orderBy('id', 'DESC')->get();
+        $categories = Category::with('children')->whereNull('parent_id')->orderBy('id', 'desc')->get();
 
         return view('frontend.shop',compact(['products','categories']));
     }

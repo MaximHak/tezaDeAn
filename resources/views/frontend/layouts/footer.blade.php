@@ -1,87 +1,96 @@
-<!--====== Footer Style 3 Part Start ======-->
-<section class="footer-style-3 pt-100 pb-100">
+<!-- ================ Subscribe section start ================= -->
+<section class="subscribe-position">
     <div class="container">
-        <div class="footer-top">
-            <div class="row justify-content-center">
-                <div class="col-lg-5 col-md-7 col-sm-10">
-                    <div class="footer-logo text-center">
-                        <a href="index.html">
-                            <img src="{{asset('frontend/')}}assets/images/logo.svg" alt="">
-                        </a>
+        <div class="subscribe text-center">
+            <h3 class="subscribe__title">OBȚINE UPDATE DE ORIUNDE</h3>
+            <p>Introduceți-vă adresa de e-mail pentru a fi la curent</p>
+            <div id="mc_embed_signup">
+                <form target="_blank"
+                      action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                      method="get" class="subscribe-form form-inline mt-5 pt-1">
+                    <div class="form-group ml-sm-auto">
+                        <input class="form-control mb-1" type="email" name="EMAIL"
+                               placeholder="Enter your email" onfocus="this.placeholder = ''"
+                               onblur="this.placeholder = 'Your Email Address '">
+                        <div class="info"></div>
                     </div>
-                    <h5 class="heading-5 text-center mt-30">Follow Us</h5>
-                    <ul class="footer-follow text-center">
-                        <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                        <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
-                        <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-                        <li><a href="javascript:void(0)"><i class="lni lni-instagram-original"></i></a></li>
-                        <li><a href="javascript:void(0)"><i class="lni lni-whatsapp"></i></a></li>
-                    </ul>
-                </div>
+                    <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
+                    <div style="position: absolute; left: -5000px;">
+                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                    </div>
+
+                </form>
             </div>
+
         </div>
-
-        <div class="footer-widget-wrapper text-center pt-20">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="footer-widget">
-                        <h5 class="footer-title">PRODUCT</h5>
-
-                        <ul class="footer-link">
-                            <li><a href="javascript:void(0)">Quest</a></li>
-                            <li><a href="javascript:void(0)">Rift S</a></li>
-                            <li><a href="javascript:void(0)">Gear VR</a></li>
-                            <li><a href="javascript:void(0)">Apps and Games</a></li>
-                            <li><a href="javascript:void(0)">Apps and Games</a></li>
-                            <li><a href="javascript:void(0)">Oculus for Business</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="footer-widget">
-                        <h5 class="footer-title">DEVELOPERS</h5>
-
-                        <ul class="footer-link">
-                            <li><a href="javascript:void(0)">Developer Centre</a></li>
-                            <li><a href="javascript:void(0)">Docs</a></li>
-                            <li><a href="javascript:void(0)">Downloads</a></li>
-                            <li><a href="javascript:void(0)">Tools</a></li>
-                            <li><a href="javascript:void(0)">Developer Blog</a></li>
-                            <li><a href="javascript:void(0)">Developer Forums</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="footer-widget">
-                        <h5 class="footer-title">PRODUCT</h5>
-
-                        <ul class="footer-link">
-                            <li><a href="javascript:void(0)">Blog</a></li>
-                            <li><a href="javascript:void(0)">Careers</a></li>
-                            <li><a href="javascript:void(0)">Brand Centre</a></li>
-                            <li><a href="javascript:void(0)">Connect</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="footer-widget">
-                        <h5 class="footer-title">PRODUCT</h5>
-
-                        <ul class="footer-link">
-                            <li><a href="javascript:void(0)">VR for Good</a></li>
-                            <li><a href="javascript:void(0)">Launch Pad</a></li>
-                            <li><a href="javascript:void(0)">Creators Lab</a></li>
-                            <li><a href="javascript:void(0)">Forums</a></li>
-                            <li><a href="javascript:void(0)">Support</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-copyright text-center">
-            <p>Developed by <a href="https://graygrids.com/" rel="nofollow" target="_blank">GrayGrids</a>. Basesd on <a href="https://ecommercehtml.com/" rel="nofollow" target="_blank">eCommerceHTML</a>
-            </p>
-        </div>
+    </div>
 </section>
-<!--====== Footer Style 3 Part Ends ======-->
+<!-- ================ Subscribe section end ================= -->
+<footer class="footer">
+    <div class="footer-area">
+        <div class="container">
+            <div class="row section_gap">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h4 class="footer_title large_title">Misiunea noastră</h4>
+                        <p>
+                           Suntem mereu in căutarea soluției care ar satisface atît clienții cît și cumpărătorii.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h4 class="footer_title">Quick Links</h4>
+                        <ul class="list">
+                            <li><a href="#">Acasă</a></li>
+                            <li><a href="#">Magazin</a></li>
+                            <li><a href="#">Brand</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget tp_widgets">
+                        <h4 class="footer_title">Contactează-ne</h4>
+                        <div class="ml-40">
+                            <p class="sm-head">
+                                <span class="fa fa-location-arrow"></span>
+                                Sediul central
+                            </p>
+                            <p>Strada Studentilor, 7/1</p>
+
+                            <p class="sm-head">
+                                <span class="fa fa-phone"></span>
+                                Numar de telefon
+                            </p>
+                            <p>
+                                +373 684852 79
+                            </p>
+
+                            <p class="sm-head">
+                                <span class="fa fa-envelope"></span>
+                                Email
+                            </p>
+                            <p>
+                                free@infovendmark.com <br>
+                                www.infovendmark.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row d-flex">
+                <p class="col-lg-12 footer-text text-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Maxim Litviniuc</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+        </div>
+    </div>
+</footer>

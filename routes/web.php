@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/', [IndexController::class, 'home'])->name('home');
 
 //Product get
-    Route::get('products',[IndexController::class,'productCategory'])->name('product');
+    Route::get('products',[IndexController::class,'productCategory'])->name('products');
     Route::post('getProductByID',[IndexController::class,'getProductByID'])->name('product.getProductByID');
 //EndFront
 

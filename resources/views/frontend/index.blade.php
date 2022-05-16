@@ -1,74 +1,246 @@
 @extends('frontend.layouts.master')
 @section('content')
-    <section class="header-style-1">
-        <div class="header-big">
-            <div class="header-items-active">
-                @if(count($banners) > 0)
-                    @foreach($banners as $banner)
-                        <div class="single-header-item bg_cover"
-                             style="background-image: url({{$banner->photo}});">
-                            <div class="header-item-content">
-                                <h3 class="title">{{$banner->title}}</h3>
-                                <a href="javascript:void(0)" class="link">{!! html_entity_decode($banner->description) !!}</a>
+    <main class="site-main">
+
+        <!--================ Hero banner start =================-->
+        <section class="hero-banner">
+            <div class="container">
+                <div class="row no-gutters align-items-center pt-60px">
+                    <div class="col-5 d-none d-sm-block">
+                        <div class="hero-banner__img">
+                            <img class="img-fluid" src="{{asset('frontend/assets/img/home/hero-banner.png')}}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+                        <div class="hero-banner__content">
+                            <h4>Cumpărăturile sunt distractive</h4>
+                            <h1>Răsfoiți produsele noastre</h1>
+                            <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth
+                                without morning over third. Their male dry. They are great appear whose land fly
+                                grawebss.</p>
+                            <a class="button button-hero" href="{{route('products')}}">Browse Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================ Hero banner start =================-->
+
+        <!--================ Hero Carousel start =================-->
+        <style>
+            /*.owl-item.cloned {*/
+            /*    width: 598px !important;*/
+            /*}*/
+
+            .owl-carousel .owl-item img {
+                width: 96% !important;
+                height: 197px !important;
+            }
+        </style>
+        <section class="section-margin mt-0">
+            <div class="owl-carousel owl-theme hero-carousel">
+                @foreach($vendors as $vendor)
+                    <div class="hero-carousel__slide">
+                        <img src="{{$vendor->photo}}" width="50" height="50" alt="" class="img-fluid">
+                        <a href="#" class="hero-carousel__slideOverlay">
+                            <h3>Wireless Headphone</h3>
+                            <p>Accessories Item</p>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+
+        <!--================ Hero Carousel end =================-->
+
+        <!-- ================ trending product section start ================= -->
+        <section class="section-margin calc-60px">
+            <div class="container">
+                <div class="section-intro pb-60px">
+                    <p>Articole populare pe piață</p>
+                    <h2>Produse <span class="section-intro__style">de tendință</span></h2>
+                </div>
+                <div class="row">
+
+                    @foreach($products as $product)
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="card text-center card-product">
+                                <div class="card-product__img">
+                                    <img class="card-img" src="{{ $product->photo }}" alt="">
+                                    <ul class="card-product__imgOverlay">
+                                        <li>
+                                            <button><i class="ti-search"></i></button>
+                                        </li>
+                                        <li>
+                                            <button><i class="ti-shopping-cart"></i></button>
+                                        </li>
+                                        <li>
+                                            <button><i class="ti-heart"></i></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <p>{{\App\Models\User::where('id',$product->vendor_id)->pluck('username')->first()}}</p>
+                                    <h4 style="height: 60px;" class="card-product__title"><a
+                                            href="single-product.html">{{ $product->title }}</a>
+                                    </h4>
+                                    @if($product->offer_price === NULL)
+                                        <p class="card-product__price">{{ $product->price }} MDL</p>
+                                    @else
+                                        <p style="text-decoration: line-through;"
+                                           class="card-product__price">{{ $product->price }} MDL</p>
+                                        <p style="color: red;" class="card-product__price">{{ $product->offer_price }}
+                                            MDL</p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     @endforeach
-                @endif
-            </div>
-        </div>
-        <div class="header-min">
-          @foreach($promos as $promo)
-            <div class="header-min-item product-style-25 bg_cover"
-                 style="background-image: url({{$promo->photo}});">
-                <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html">{{$promo->title}}</a></h4>
-                    <p>{!! html_entity_decode($promo->description) !!}</p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> Vezi mai multe</a>
+
                 </div>
             </div>
-            @endforeach
-        </div>
-    </section>
-    <section class="content-card-style-4 pt-70 pb-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-7 col-sm-8">
-                    <div class="single-content mt-15 text-center">
-                        <div class="content-icon">
-                            <i class="mdi mdi-truck-fast"></i>
-                        </div>
-                        <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">Cea mai rapida livrare din tara</a></h4>
-                            <p>Este disponibila pentru majoritatea comenzilor</p>
-                            <a href="javascript:void(0)" class="more">Vezi detalii</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-7 col-sm-8">
-                    <div class="single-content mt-15 text-center">
-                        <div class="content-icon">
-                            <i class="mdi mdi-message-text"></i>
-                        </div>
-                        <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">Recenzii urmarite si respectate</a></h4>
-                            <p>Ai o întrebare? Apelați un specialist sau discutați online pentru ajutor</p>
-                            <a href="contact-page.html" class="more">Pagina de contacte</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-7 col-sm-8">
-                    <div class="single-content mt-15 text-center">
-                        <div class="content-icon">
-                            <i class="mdi mdi-ticket-percent"></i>
-                        </div>
-                        <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">Gaseste reduceri zilnice</a></h4>
-                            <p>Partenerii nostri sunt dispusi sa lucreze pentru apricierea voastra</p>
-                            <a href="javascript:void(0)" class="more">Citeste mai mult</a>
+        </section>
+        <!-- ================ trending product section end ================= -->
+
+
+        <!-- ================ offer section start ================= -->
+        <section class="offer" id="parallax-1" data-anchor-target="#parallax-1"
+                 data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="offer__content text-center">
+                            <h3>Până la 50% reducere</h3>
+                            <h4>Reduceri de vară</h4>
+                            <p>Nu rata oferta</p>
+                            <a class="button button--active mt-3 mt-xl-4" href="#">Cumpără acum</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <!-- ================ offer section end ================= -->
+
+        <!-- ================ Best Selling item  carousel ================= -->
+        <section class="section-margin calc-60px">
+            <div class="container">
+                <div class="section-intro pb-60px">
+                    <p>Articole populare pe piață</p>
+                    <h2>Cele <span class="section-intro__style">mai vandute</span></h2>
+                </div>
+                <div class="owl-carousel owl-theme" id="bestSellerCarousel">
+                    @foreach($products as $product)
+                        <div class="card text-center card-product">
+                            <div class="card-product__img">
+                                <img class="img-fluid" style="width: 100%!important;height: auto!important;" src="{{$product->photo}}" alt="">
+                                <ul class="card-product__imgOverlay">
+                                    <li>
+                                        <button><i class="ti-search"></i></button>
+                                    </li>
+                                    <li>
+                                        <button><i class="ti-shopping-cart"></i></button>
+                                    </li>
+                                    <li>
+                                        <button><i class="ti-heart"></i></button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <p>{{\App\Models\User::where('id',$product->vendor_id)->pluck('username')->first()}}</p>
+                                <h4  style="height: 60px;" class="card-product__title"><a
+                                        href="single-product.html">{{ $product->title }}</a>
+
+                                </h4>
+                                @if($product->offer_price === NULL)
+                                    <p class="card-product__price">{{ $product->price }} MDL</p>
+                                @else
+                                    <p style="text-decoration: line-through;"
+                                       class="card-product__price">{{ $product->price }} MDL</p>
+                                    <p style="color: red;" class="card-product__price">{{ $product->offer_price }}
+                                        MDL</p>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+
+
+                </div>
+            </div>
+        </section>
+        <!-- ================ Best Selling item  carousel end ================= -->
+
+        <!-- ================ Blog section start ================= -->
+        <section class="blog">
+            <div class="container">
+                <div class="section-intro pb-60px">
+                    <p>Cele mai recente știri de pe piață</p>
+                    <h2>Cele  <span class="section-intro__style">mai recente știri</span></h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="card card-blog">
+                            <div class="card-blog__img">
+                                <img class="card-img rounded-0" src="{{asset('frontend/assets/img/blog/blog1.png')}}" alt="">
+                            </div>
+                            <div class="card-body">
+                                <ul class="card-blog__info">
+                                    <li><a href="#">By Admin</a></li>
+                                    <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
+                                </ul>
+                                <h4 class="card-blog__title"><a href="single-blog.html">The Richland Center Shooping
+                                        News and weekly shooper</a></h4>
+                                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged
+                                    divided light Forth.</p>
+                                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="card card-blog">
+                            <div class="card-blog__img">
+                                <img class="card-img rounded-0" src="{{asset('frontend/assets/img/blog/blog2.png')}}" alt="">
+                            </div>
+                            <div class="card-body">
+                                <ul class="card-blog__info">
+                                    <li><a href="#">By Admin</a></li>
+                                    <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
+                                </ul>
+                                <h4 class="card-blog__title"><a href="single-blog.html">The Shopping News also offers
+                                        top-quality printing services</a></h4>
+                                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged
+                                    divided light Forth.</p>
+                                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                        <div class="card card-blog">
+                            <div class="card-blog__img">
+                                <img class="card-img rounded-0" src="{{asset('frontend/assets/img/blog/blog3.png')}}" alt="">
+                            </div>
+                            <div class="card-body">
+                                <ul class="card-blog__info">
+                                    <li><a href="#">By Admin</a></li>
+                                    <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
+                                </ul>
+                                <h4 class="card-blog__title"><a href="single-blog.html">Professional design staff and
+                                        efficient equipment you’ll find we offer</a></h4>
+                                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged
+                                    divided light Forth.</p>
+                                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ================ Blog section end ================= -->
+
+
+
+
+    </main>
 @endsection
