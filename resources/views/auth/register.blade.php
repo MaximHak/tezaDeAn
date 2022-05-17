@@ -1,94 +1,69 @@
- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    @include('backend.layouts.head')
-</head>
-<body>
-<div id="auth">
-
-    <div class="row h-100">
-        <div class="col-lg-5 col-12">
-            <div id="auth-left">
-                <div class="auth-logo">
-                    <a href="index.html"><img src="{{asset('backend/assets/images/logo/logo.png')}}" alt="Logo"></a>
+@extends('frontend.layouts.master')
+@section('content')
+<section class="login_box_area section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <div class="hover">
+                        <h4>Ai deja un cont?</h4>
+                        <p>Intră în contul tău chiar acum</p>
+                        <a class="button button-account" href="{{route('login')}}">Conectați-vă acum</a>
+                    </div>
                 </div>
-                <h1 class="auth-title">{{ __('Register') }}</h1>
-                <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
-
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input id="email" placeholder="Email" type="email" class="form-control form-control-xl @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                        <div class="form-control-icon">
-                            <i class="bi bi-envelope"></i>
-                        </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner register_form_inner">
+                    <h3>Creează un cont</h3>
+                    <form class="row login_form" method="POST" action="{{ route('register') }}" id="register_form" >
+                        @csrf
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
-                    </div>
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input id="name"  placeholder="Name" type="text" class="form-control form-control-xl @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                        <div class="form-control-icon">
-                            <i class="bi bi-person"></i>
+                        <div class="col-md-12 form-group">
+                            <input type="text" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                         </div>
+
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
-                    </div>
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input id="password" type="password" placeholder="Password" class="form-control form-control-xl @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                        <div class="form-control-icon">
-                            <i class="bi bi-shield-lock"></i>
+                        <div class="col-md-12 form-group">
+                            <input type="text" placeholder="Numele, Prenumele" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                         </div>
+
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
-                    </div>
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input id="password-confirm" type="password" placeholder="Confirm password" class="form-control form-control-xl" name="password_confirmation" required autocomplete="new-password">
-                        <div class="form-control-icon">
-                            <i class="bi bi-shield-lock"></i>
+                        <div class="col-md-12 form-group">
+                            <input type="password" placeholder="Parolă" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                         </div>
-                    </div>
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <select  class="form-control form-control-xl @error('email') is-invalid @enderror"
-                                 name="city" value="{{ old('city') }}" autocomplete="city" autofocus
-                                 placeholder="City">
-                            <option value="" disabled selected hidden>
 
-                                <i class="bi bi-envelope"></i>
 
-                                Alege localitatea ta
-                            </option>
-                            @foreach($cities as $item)
-                                <option value="{{$item->id}}">{{$item->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up</button>
-                </form>
-                <div class="text-center mt-5 text-lg fs-4">
-                    <p class='text-gray-600'>Already have an account? <a href="{{route('login')}}" class="font-bold">Log
-                            in</a>.</p>
+                        <div class="col-md-12 form-group">
+                            <input type="password" placeholder="Confirmă parola" class="form-control" id="confirmPassword" name="password_confirmation" required autocomplete="new-password">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option2" name="remember"
+                                       id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label for="f-option2">Ţine-mă logat.</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="button button-register w-100">Register</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-lg-7 d-none d-lg-block">
-            <div id="auth-right">
-
-            </div>
-        </div>
     </div>
+</section>
+@endsection
 
-</div>
-</body>
-
-</html>
 

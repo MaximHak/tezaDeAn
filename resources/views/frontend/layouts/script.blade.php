@@ -6,3 +6,4 @@
 <script src="{{asset('frontend/assets/vendors/jquery.ajaxchimp.min.js')}}"></script>
 <script src="{{asset('frontend/assets/vendors/mail-script.js')}}"></script>
 <script src="{{asset('frontend/assets/js/main.js')}}"></script>
+@yield('scripts')

@@ -13,11 +13,19 @@
                             <li class="common-filter">
                                 <form action="#">
                                     <ul>
+                                        <li class="filter-list"><input class="pixel-radio" checked value="all"
+                                                                       type="radio" id="all"
+                                                                       name="brand"><label
+                                                for="all">Toate
+                                                <span> {{" ( " . $count = \App\Models\Product::where(['status' => 'active'])->count() . " ) "}}</span></label>
+                                        </li>
                                         @foreach($categories as $category)
-                                            <li class="filter-list"><input class="pixel-radio" type="radio" id="men"
+                                            <li class="filter-list"><input class="pixel-radio"
+                                                                           value="{{ $category->id }}" type="radio"
+                                                                           id="{{ $category->slug }}"
                                                                            name="brand"><label
-                                                    for="men">{{ $category->title }}
-                                                    <span> {{" ( " . $count = \App\Models\Product::where('cat_id', $category->id)->count() . " ) "}}</span></label>
+                                                    for="{{ $category->slug }}">{{ $category->title }}
+                                                    <span> {{" ( " . $count = \App\Models\Product::where(['cat_id' => $category->id,'status' => 'active'])->count() . " ) "}}</span></label>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -31,17 +39,18 @@
                     <!-- Start Filter Bar -->
                     <div class="filter-bar d-flex flex-wrap align-items-center">
                         <div class="sorting">
-                            <select>
-                                <option value="1">Default sorting</option>
-                                <option value="1">Default sorting</option>
-                                <option value="1">Default sorting</option>
+                            <select class="order_by" name="order_by">
+                                <option selected value="1">Ordonează după A-Z</option>
+                                <option value="2">Ordonează după Z-A</option>
+                                <option value="3">Ordonează după data adăugării</option>
+
                             </select>
                         </div>
                         <div class="sorting mr-auto">
-                            <select>
-                                <option value="1">Show 12</option>
-                                <option value="1">Show 12</option>
-                                <option value="1">Show 12</option>
+                            <select class="show_amount" name="show_amount">
+                                <option selected value="12">Arată 12</option>
+                                <option value="24">Arată 24</option>
+                                <option value="36">Arată 36</option>
                             </select>
                         </div>
                         <div>
@@ -56,7 +65,7 @@
                     <!-- End Filter Bar -->
                     <!-- Start Best Seller -->
                     <section class="lattest-product-area pb-40 category-list">
-                        <div class="row">
+                        <div class="row productList">
 
                             @foreach($products as $product)
                                 <div class="col-md-6 col-lg-4">
@@ -93,6 +102,8 @@
                                     </div>
                                 </div>
                             @endforeach
+                            <div style="width: 100%;
+    margin-left: 41%;" class="text-center">    {{ $products->links() }}</div>
                         </div>
                     </section>
                     <!-- End Best Seller -->
@@ -110,7 +121,7 @@
                 <h2>Produse <span class="section-intro__style">de top</span></h2>
             </div>
             <div class="row mt-30">
-                @foreach($products as $product)
+                @foreach($related_products as $product)
                     <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
                         <div class="single-search-product-wrapper">
                             <div class="single-search-product d-flex">
@@ -122,7 +133,9 @@
                                     @if($product->offer_price === NULL)
                                         <div class="price">{{ $product->price }} MDL</div>
                                     @else
-                                        <div style="text-decoration: line-through;" class="price">{{ $product->price }} MDL</div>
+                                        <div style="text-decoration: line-through;" class="price">{{ $product->price }}
+                                            MDL
+                                        </div>
                                         <div style="color: red;" class="price">{{ $product->offer_price }} MDL</div>
                                     @endif
                                 </div>
@@ -135,4 +148,71 @@
         </div>
     </section>
     <!-- ================ top product area end ================= -->
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('input:radio').change(function () {
+                const catId = $(this).val();
+                const order_by = $('.order_by').val();
+                const show_amount = $('.show_amount').val();
+                $.ajax({
+                    url: '{{ route('update.product.list') }}',
+                    method: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        catId: catId,
+                        order_by: order_by,
+                        show_amount: show_amount
+                    },
+                    success: function (response) {
+                        $('.productList').empty();
+                        $('body').find('.productList').append(response.html);
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            $('.show_amount').change(function () {
+                const catId = $('input[name=brand]:checked').val();
+                const order_by = $('.order_by').val();
+                const show_amount = $(this).val();
+                $.ajax({
+                    url: '{{ route('update.product.list') }}',
+                    method: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        catId: catId,
+                        order_by: order_by,
+                        show_amount: show_amount
+                    },
+                    success: function (response) {
+                        $('.productList').empty();
+                        $('body').find('.productList').append(response.html);
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            $('.order_by').change(function () {
+                const catId = $('input[name=brand]:checked').val();
+                const order_by = $(this).val();
+                const show_amount = $('.show_amount').val();
+                $.ajax({
+                    url: '{{ route('update.product.list') }}',
+                    method: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        catId: catId,
+                        order_by: order_by,
+                        show_amount: show_amount
+                    },
+                    success: function (response) {
+                        $('.productList').empty();
+                        $('body').find('.productList').append(response.html);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

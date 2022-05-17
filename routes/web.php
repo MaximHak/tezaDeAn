@@ -26,15 +26,26 @@ use Illuminate\Support\Facades\Route;
 
 
 //FrontEnd
-Route::group(['middleware' => 'auth'], function () {
+//Route::group(['middleware' => 'auth'], function () {
 Route::get('/', [IndexController::class, 'home'])->name('home');
 
 //Product get
     Route::get('products',[IndexController::class,'productCategory'])->name('products');
+    Route::post('productList',[IndexController::class,'productList'])->name('update.product.list');
     Route::get('getProductByID/{id}',[IndexController::class,'getProductByID'])->name('product.getProductByID');
+    Route::get('checkout',[IndexController::class,'checkout'])->name('checkout');
+    Route::post('orderConfirmation',[IndexController::class,'orderConfirmation'])->name('order_confirmation');
+    Route::get('contact',[IndexController::class,'contact'])->name('contact');
+    Route::post('contact_send',[IndexController::class,'contactSend'])->name('contact.create');
 //EndFront
 
-});
+    //Cart
+    Route::get('cart', [\App\Http\Controllers\Frontend\ProductController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [\App\Http\Controllers\Frontend\ProductController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('update-cart', [\App\Http\Controllers\Frontend\ProductController::class, 'update'])->name('update.cart');
+    Route::delete('remove-from-cart', [\App\Http\Controllers\Frontend\ProductController::class, 'remove'])->name('remove.from.cart');
+    //
+//});
 
 Auth::routes(['register' => true]);
 

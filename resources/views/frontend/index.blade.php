@@ -34,7 +34,7 @@
 
             .owl-carousel .owl-item img {
                 width: 96% !important;
-                height: 197px !important;
+                height: 238px !important;
             }
         </style>
         <section class="section-margin mt-0">
@@ -43,8 +43,8 @@
                     <div class="hero-carousel__slide">
                         <img src="{{$vendor->photo}}" width="50" height="50" alt="" class="img-fluid">
                         <a href="#" class="hero-carousel__slideOverlay">
-                            <h3>Wireless Headphone</h3>
-                            <p>Accessories Item</p>
+                            <h3>{{$vendor->username}}</h3>
+                            <p>{{\App\Models\City::where('id', $vendor->city_id)->pluck('title')->first()}}</p>
                         </a>
                     </div>
                 @endforeach
@@ -82,7 +82,7 @@
                                 <div class="card-body">
                                     <p>{{\App\Models\User::where('id',$product->vendor_id)->pluck('username')->first()}}</p>
                                     <h4 style="height: 60px;" class="card-product__title"><a
-                                            href="single-product.html">{{ $product->title }}</a>
+                                            href="{{route('product.getProductByID',$product->id)}}l">{{ $product->title }}</a>
                                     </h4>
                                     @if($product->offer_price === NULL)
                                         <p class="card-product__price">{{ $product->price }} MDL</p>
@@ -113,7 +113,7 @@
                             <h3>Până la 50% reducere</h3>
                             <h4>Reduceri de vară</h4>
                             <p>Nu rata oferta</p>
-                            <a class="button button--active mt-3 mt-xl-4" href="#">Cumpără acum</a>
+                            <a class="button button--active mt-3 mt-xl-4" href="{{route('products')}}">Cumpără acum</a>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                             <div class="card-body">
                                 <p>{{\App\Models\User::where('id',$product->vendor_id)->pluck('username')->first()}}</p>
                                 <h4  style="height: 60px;" class="card-product__title"><a
-                                        href="single-product.html">{{ $product->title }}</a>
+                                        href="{{route('product.getProductByID',$product->id)}}">{{ $product->title }}</a>
 
                                 </h4>
                                 @if($product->offer_price === NULL)

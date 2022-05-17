@@ -35,12 +35,7 @@
                         </ul>
                      {!! html_entity_decode($product->summary)   !!}
                         <div class="product_count">
-                            <label for="qty">Cantitate:</label>
-
-                            <input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:"
-                                   class="input-text qty">
-
-                            <a class="button primary-btn" href="#">Adaugă în coș</a>
+                            <a class="button primary-btn" href="{{ route('add.to.cart', $product->id) }}">Adaugă în coș</a>
                         </div>
 
                     </div>
