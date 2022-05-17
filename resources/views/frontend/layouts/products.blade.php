@@ -1,4 +1,5 @@
-@if($products)
+
+@if(count($products) != 0)
     @foreach($products as $product)
         <div class="col-md-6 col-lg-4">
             <div class="card text-center card-product">

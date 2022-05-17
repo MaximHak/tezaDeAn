@@ -46,7 +46,7 @@ class IndexController extends Controller
         elseif ($request->catId == 'all' && $request->order_by == 2)
             $products = Product::where(['status' => 'active'])->orderBy('title', 'desc')->paginate($request->show_amount);
         elseif ($request->catId == 'all' && $request->order_by == 3)
-            $products = Product::where(['status' => 'active'])->orderBy('date', 'asc')->paginate($request->show_amount);
+            $products = Product::where(['status' => 'active'])->orderBy('created_at', 'asc')->paginate($request->show_amount);
         if ($products) {
             $html = view('frontend.layouts.products', compact('products'))->render();
 
@@ -55,6 +55,7 @@ class IndexController extends Controller
                 'html' => $html,
             ]);
         }else{
+            $html = view('frontend.layouts.products', compact('products'))->render();
             return response()->json([
                 'status' => false,
                 'html' => $html,
