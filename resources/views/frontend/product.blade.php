@@ -317,7 +317,7 @@
                             <div class="single-search-product d-flex">
                                 <a href="#"><img src="{{ $product->photo }}" alt=""></a>
                                 <div class="desc">
-                                    <a href="#" style="height: 75px;" class="title">{{ $product->title }}</a>
+                                    <a href="{{route('product.getProductByID',$product->id)}}" style="height: 75px;" class="title">{{ $product->title }}</a>
 
 
                                     @if($product->offer_price === NULL)

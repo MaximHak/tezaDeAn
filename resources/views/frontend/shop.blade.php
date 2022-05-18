@@ -6,21 +6,24 @@
     <section class="section-margin--small mb-5">
         <div class="container">
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-5">
+                <div style="padding-right: 0;" class="col-xl-3 col-lg-4 col-md-5">
+
+
                     <div class="sidebar-categories">
                         <div class="head">Răsfoiți categorii</div>
                         <ul class="main-categories">
                             <li class="common-filter">
                                 <form action="#">
                                     <ul>
-                                        <li class="filter-list"><input class="pixel-radio" checked value="all"
+                                        <li class="filter-list"><input class="pixel-radio categoryID" checked
+                                                                       value="all"
                                                                        type="radio" id="all"
                                                                        name="brand"><label
                                                 for="all">Toate
                                                 <span> {{" ( " . $count = \App\Models\Product::where(['status' => 'active'])->count() . " ) "}}</span></label>
                                         </li>
                                         @foreach($categories as $category)
-                                            <li class="filter-list"><input class="pixel-radio"
+                                            <li class="filter-list"><input class="pixel-radio categoryID"
                                                                            value="{{ $category->id }}" type="radio"
                                                                            id="{{ $category->slug }}"
                                                                            name="brand"><label
@@ -33,7 +36,48 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="sidebar-filter">
+                        <div class="top-filter-head">Filtre</div>
+                        <div class="common-filter">
+                            <div class="head">Magazine</div>
+                            <form action="#">
+                                <ul>
+                                    <li class="filter-list"><input class="pixel-radio vendor" checked type="radio"
+                                                                   id="all_vend"
+                                                                   value="all" name="vendor_id"><label for="all_vend">Toate<span></span></label>
+                                    </li>
+                                    @foreach($vendors as $vend)
+                                        <li class="filter-list"><input class="pixel-radio vendor" type="radio"
+                                                                       id="{{$vend->id}}"
+                                                                       value="{{$vend->id}}" name="vendor_id"><label
+                                                for="{{$vend->id}}">{{$vend->username}}<span></span></label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="common-filter">
+                            <div class="head">Condiție</div>
+                            <form action="#">
+                                <ul>
+                                    <li class="filter-list"><input class="pixel-radio condition" checked type="radio"
+                                                                   id="condition0"
+                                                                   value="all" name="condition"><label
+                                            for="condition0">Toate<span></span></label></li>
+                                    <li class="filter-list"><input class="pixel-radio condition" type="radio"
+                                                                   id="condition1"
+                                                                   value="new" name="condition"><label
+                                            for="condition1">Noi<span></span></label></li>
+                                    <li class="filter-list"><input class="pixel-radio condition" type="radio" id="condition2"
+                                                                   value="popular" name="condition"><label
+                                            for="condition2">Populare<span></span></label>
+                                    </li>
 
+                                </ul>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-7">
                     <!-- Start Filter Bar -->
@@ -74,14 +118,18 @@
                                             <img class="card-img" src="{{ $product->photo }}" alt="">
                                             <ul class="card-product__imgOverlay">
                                                 <li>
-                                                    <button><i class="ti-search"></i></button>
+                                                    <button
+                                                        onclick="location.href='{{route('product.getProductByID',$product->id)}}';">
+                                                        <i class="ti-search"></i></button>
+
+
                                                 </li>
                                                 <li>
-                                                    <button><i class="ti-shopping-cart"></i></button>
+                                                    <button
+                                                        onclick="location.href='{{route('product.getProductByID',$product->id)}}';">
+                                                        <i class="ti-shopping-cart"></i></button>
                                                 </li>
-                                                <li>
-                                                    <button><i class="ti-heart"></i></button>
-                                                </li>
+
                                             </ul>
                                         </div>
                                         <div class="card-body">
@@ -102,8 +150,8 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <div style="width: 100%;
-    margin-left: 41%;" class="text-center">    {{ $products->links() }}</div>
+                            {{--                            <div style="width: 100%;--}}
+                            {{--    margin-left: 41%;" class="text-center">    {{ $products->links() }}</div>--}}
                         </div>
                     </section>
                     <!-- End Best Seller -->
@@ -127,7 +175,7 @@
                             <div class="single-search-product d-flex">
                                 <a href="#"><img src="{{ $product->photo }}" alt=""></a>
                                 <div class="desc">
-                                    <a href="#" style="height: 75px;" class="title">{{ $product->title }}</a>
+                                    <a href="{{route('product.getProductByID',$product->id)}}" style="height: 75px;" class="title">{{ $product->title }}</a>
 
 
                                     @if($product->offer_price === NULL)
@@ -152,7 +200,10 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('input:radio').change(function () {
+            $('input:radio.categoryID').change(function () {
+                console.log('test');
+                const vendor = $('input[name=vendor_id]:checked').val();
+                const condition = $('input[name=condition]:checked').val();
                 const catId = $(this).val();
                 const order_by = $('.order_by').val();
                 const show_amount = $('.show_amount').val();
@@ -163,6 +214,8 @@
                         _token: '{{ csrf_token() }}',
                         catId: catId,
                         order_by: order_by,
+                        condition: condition,
+                        vendor: vendor,
                         show_amount: show_amount
                     },
                     success: function (response) {
@@ -174,7 +227,9 @@
         });
         $(document).ready(function () {
             $('.show_amount').change(function () {
+                const vendor = $('input[name=vendor_id]:checked').val();
                 const catId = $('input[name=brand]:checked').val();
+                const condition = $('input[name=condition]:checked').val();
                 const order_by = $('.order_by').val();
                 const show_amount = $(this).val();
                 $.ajax({
@@ -184,6 +239,8 @@
                         _token: '{{ csrf_token() }}',
                         catId: catId,
                         order_by: order_by,
+                        condition: condition,
+                        vendor: vendor,
                         show_amount: show_amount
                     },
                     success: function (response) {
@@ -195,7 +252,9 @@
         });
         $(document).ready(function () {
             $('.order_by').change(function () {
+                const vendor = $('input[name=vendor_id]:checked').val();
                 const catId = $('input[name=brand]:checked').val();
+                const condition = $('input[name=condition]:checked').val();
                 const order_by = $(this).val();
                 const show_amount = $('.show_amount').val();
                 $.ajax({
@@ -204,6 +263,58 @@
                     data: {
                         _token: '{{ csrf_token() }}',
                         catId: catId,
+                        order_by: order_by,
+                        condition: condition,
+                        vendor: vendor,
+                        show_amount: show_amount
+                    },
+                    success: function (response) {
+                        $('.productList').empty();
+                        $('body').find('.productList').append(response.html);
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            $('input:radio.vendor').change(function () {
+                const condition = $('input[name=condition]:checked').val();
+                const vendor = $(this).val();
+                const catId = $('input[name=brand]:checked').val();
+                const order_by = $('.order_by').val();
+                const show_amount = $('.show_amount').val();
+                $.ajax({
+                    url: '{{ route('update.product.list') }}',
+                    method: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        catId: catId,
+                        vendor: vendor,
+                        condition: condition,
+                        order_by: order_by,
+                        show_amount: show_amount
+                    },
+                    success: function (response) {
+                        $('.productList').empty();
+                        $('body').find('.productList').append(response.html);
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            $('input:radio.condition').change(function () {
+                const condition = $(this).val();
+                const vendor = $('input[name=vendor_id]:checked').val();
+                const catId = $('input[name=brand]:checked').val();
+                const order_by = $('.order_by').val();
+                const show_amount = $('.show_amount').val();
+                $.ajax({
+                    url: '{{ route('update.product.list') }}',
+                    method: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        catId: catId,
+                        condition: condition,
+                        vendor: vendor,
                         order_by: order_by,
                         show_amount: show_amount
                     },

@@ -54,24 +54,18 @@ class CategoryController extends Controller
         $this->validate($request, [
             'title' => 'string|required',
             'summary' => 'string|nullable',
-            'is_parent' => 'sometimes|in:1',
-            'parent_id' => 'nullable',
+
             'status' => 'nullable|in:active,inactive',
         ]);
-        $data = $request->all();
+
+        $data = array_merge($request->all(), ['is_parent' => 0]);
+
         $slug = Str::slug($request->input('title'));
         $slug_count = Category::where('slug', $slug)->count();
         if ($slug_count > 0) {
             $slug .= time() . '-' . $slug;
         }
         $data['slug'] = $slug;
-        $parent_id = $request->input('parent_id');
-        if (isset($parent_id)) {
-            $data['is_parent'] = 0;
-        } else {
-            $data['is_parent'] = $request->input('is_parent');
-        }
-//        dd($data);
         $status = Category::create($data);
         if ($status) {
             return redirect()->route('category.index')->with('success', 'Category was created!');
@@ -120,15 +114,13 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         if ($category) {
-
+            $request->is_parent = 1;
             $this->validate($request, [
                 'title' => 'string|required',
                 'summary' => 'string|nullable',
-                'is_parent' => 'sometimes|in:1,0',
-                'parent_id' => 'nullable|exists:categories,id',
                 'status' => 'nullable|in:active,inactive',
             ]);
-            $data = $request->all();
+            $data = array_merge($request->all(), ['is_parent' => 1]);
 
             if ($request->is_parent == 1) {
                 $data['parent_id'] = null;

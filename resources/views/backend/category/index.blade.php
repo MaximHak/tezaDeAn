@@ -43,9 +43,6 @@
                                 <tr>
                                     <th>S.N.</th>
                                     <th>Title</th>
-                                    <th>Photo</th>
-                                    <th>Is parent</th>
-                                    <th>Parents</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -55,13 +52,6 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->title}}</td>
-                                        <td>mmmm</td>
-                                        <td>
-                                            {{$item->is_parent === 1 ? 'Yes' : 'No'}}
-                                        </td>
-                                        <td>
-                                          {{\App\Models\Category::where('id',$item->parent_id)->value('title')}}
-                                        </td>
                                         <td>
 
                                             <input type="checkbox" name="toggle" value="{{$item->id}}"
@@ -97,17 +87,7 @@
                 </section>
             </div>
 
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">A. Saugi</a></p>
-                    </div>
-                </div>
-            </footer>
+
         </div>
     </div>
 @endsection

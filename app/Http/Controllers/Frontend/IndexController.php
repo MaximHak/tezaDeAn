@@ -13,6 +13,8 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use function GuzzleHttp\Promise\all;
 
 
 class IndexController extends Controller
@@ -23,30 +25,77 @@ class IndexController extends Controller
     public function home()
     {
         $user = Auth::user();
-        $banners = Banner::where(['status' => 'active', 'condition' => 'banner'])->orderBy('id', 'DESC')->limit('3')->get();
-        $promos = Banner::where(['status' => 'active', 'condition' => 'promo'])->orderBy('id', 'DESC')->limit('3')->get();
         $categories = Category::where(['status' => 'active', 'is_parent' => 1])->limit(3)->orderBy('id', 'DESC')->get();
         $vendors = User::where(['status' => 'active', 'role' => 'seller'])->limit(5)->orderBy('id', 'DESC')->get();
 
-        $products = Product::where(['status' => 'active'])->limit(8)->get();
-        return view('frontend.index', compact(['banners', 'products', 'categories', 'promos', 'vendors', 'user']));
+        $popular_products = Product::where(['status' => 'active', 'condition' => 'popular'])->inRandomOrder()->limit(8)->get();
+        $new_products = Product::where(['status' => 'active', 'condition' => 'new'])->inRandomOrder()->limit(8)->get();
+
+        return view('frontend.index', compact(['popular_products', 'new_products', 'categories', 'vendors', 'user']));
     }
 
+    /**
+     * A function that is used to filter products based on the category, vendor, condition and order by.
+     *
+     * @param Request request catId, order_by, vendor, condition, show_amount
+     */
     public function productList(Request $request)
     {
-//dd($request->all());
-        if ($request->catId != 'all' && $request->order_by == 1)
-            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId])->orderBy('title', 'asc')->paginate($request->show_amount);
-        elseif ($request->catId != 'all' && $request->order_by == 2)
-            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId])->orderBy('title', 'desc')->paginate($request->show_amount);
-        elseif ($request->catId != 'all' && $request->order_by == 3)
-            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId])->orderBy('date', 'asc')->paginate($request->show_amount);
-        elseif ($request->catId === 'all' && $request->order_by == 1)
+        //
+        if ($request->catId != 'all' && $request->order_by == 1 && $request->vendor != 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId, 'vendor_id' => $request->vendor, 'condition' => $request->condition])->orderBy('title', 'asc')->paginate($request->show_amount);
+        elseif ($request->catId != 'all' && $request->order_by == 2 && $request->vendor != 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId, 'vendor_id' => $request->vendor, 'condition' => $request->condition])->orderBy('title', 'desc')->paginate($request->show_amount);
+        elseif ($request->catId != 'all' && $request->order_by == 3 && $request->vendor != 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId, 'vendor_id' => $request->vendor, 'condition' => $request->condition])->orderBy('date', 'asc')->paginate($request->show_amount);
+
+        //
+        elseif ($request->catId == 'all' && $request->order_by == 1 && $request->vendor == 'all' && $request->condition == 'all')
             $products = Product::where(['status' => 'active'])->orderBy('title', 'asc')->paginate($request->show_amount);
-        elseif ($request->catId == 'all' && $request->order_by == 2)
+        elseif ($request->catId == 'all' && $request->order_by == 2 && $request->vendor == 'all' && $request->condition == 'all')
             $products = Product::where(['status' => 'active'])->orderBy('title', 'desc')->paginate($request->show_amount);
-        elseif ($request->catId == 'all' && $request->order_by == 3)
+        elseif ($request->catId == 'all' && $request->order_by == 3 && $request->vendor == 'all' && $request->condition == 'all')
             $products = Product::where(['status' => 'active'])->orderBy('created_at', 'asc')->paginate($request->show_amount);
+
+        //
+        elseif ($request->catId == 'all' && $request->order_by == 1 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'condition' => $request->condition])->orderBy('title', 'asc')->paginate($request->show_amount);
+        elseif ($request->catId == 'all' && $request->order_by == 2 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'condition' => $request->condition])->orderBy('title', 'desc')->paginate($request->show_amount);
+        elseif ($request->catId == 'all' && $request->order_by == 3 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'condition' => $request->condition])->orderBy('created_at', 'asc')->paginate($request->show_amount);
+
+        //
+        elseif ($request->catId != 'all' && $request->order_by == 1 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId, 'condition' => $request->condition])->orderBy('title', 'asc')->paginate($request->show_amount);
+        elseif ($request->catId != 'all' && $request->order_by == 2 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId, 'condition' => $request->condition])->orderBy('title', 'desc')->paginate($request->show_amount);
+        elseif ($request->catId != 'all' && $request->order_by == 3 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId, 'condition' => $request->condition])->orderBy('created_at', 'asc')->paginate($request->show_amount);
+
+        //
+        elseif ($request->catId != 'all' && $request->order_by == 1 && $request->vendor == 'all' && $request->condition == 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId])->orderBy('title', 'asc')->paginate($request->show_amount);
+        elseif ($request->catId != 'all' && $request->order_by == 2 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId])->orderBy('title', 'desc')->paginate($request->show_amount);
+        elseif ($request->catId != 'all' && $request->order_by == 3 && $request->vendor == 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'cat_id' => $request->catId])->orderBy('created_at', 'asc')->paginate($request->show_amount);
+
+        //
+        elseif ($request->catId == 'all' && $request->order_by == 1 && $request->vendor != 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'vendor_id' => $request->vendor , 'condition' => $request->condition])->orderBy('title', 'asc')->paginate($request->show_amount);
+        elseif ($request->catId == 'all' && $request->order_by == 2 && $request->vendor != 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'vendor_id' => $request->vendor , 'condition' => $request->condition])->orderBy('title', 'desc')->paginate($request->show_amount);
+        elseif ($request->catId == 'all' && $request->order_by == 3 && $request->vendor != 'all' && $request->condition != 'all')
+            $products = Product::where(['status' => 'active', 'vendor_id' => $request->vendor, 'condition' => $request->condition])->orderBy('created_at', 'asc')->paginate($request->show_amount);
+
+        //
+        elseif ($request->catId == 'all' && $request->order_by == 1 && $request->vendor != 'all' && $request->condition == 'all')
+            $products = Product::where(['status' => 'active', 'vendor_id' => $request->vendor])->orderBy('title', 'asc')->paginate($request->show_amount);
+        elseif ($request->catId == 'all' && $request->order_by == 2 && $request->vendor != 'all' && $request->condition == 'all')
+            $products = Product::where(['status' => 'active', 'vendor_id' => $request->vendor])->orderBy('title', 'desc')->paginate($request->show_amount);
+        elseif ($request->catId == 'all' && $request->order_by == 3 && $request->vendor != 'all' && $request->condition == 'all')
+            $products = Product::where(['status' => 'active', 'vendor_id' => $request->vendor])->orderBy('created_at', 'asc')->paginate($request->show_amount);
         if ($products) {
             $html = view('frontend.layouts.products', compact('products'))->render();
 
@@ -54,7 +103,7 @@ class IndexController extends Controller
                 'status' => true,
                 'html' => $html,
             ]);
-        }else{
+        } else {
             $html = view('frontend.layouts.products', compact('products'))->render();
             return response()->json([
                 'status' => false,
@@ -68,10 +117,11 @@ class IndexController extends Controller
      */
     public function productCategory()
     {
+        $vendors = User::where(['status' => 'active', 'role' => 'seller'])->get();
         $products = Product::where(['status' => 'active'])->paginate(12);
-        $related_products = Product::where(['status' => 'active'])->limit(4)->get();
+        $related_products = Product::where(['status' => 'active'])->inRandomOrder()->limit(4)->get();
         $categories = Category::with('children')->whereNull('parent_id')->orderBy('id', 'desc')->get();
-        return view('frontend.shop', compact(['products', 'categories', 'related_products']));
+        return view('frontend.shop', compact(['products', 'categories', 'related_products', 'vendors']));
     }
 
     /**
@@ -84,7 +134,7 @@ class IndexController extends Controller
     public function getProductByID($id)
     {
         $product = Product::where('id', $id)->get()->first();
-        $products = Product::where(['status' => 'active'])->limit(4)->get();
+        $products = Product::where(['status' => 'active'])->inRandomOrder()->limit(4)->get();
         return view('frontend.product', compact('product', 'products'));
     }
 

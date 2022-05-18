@@ -81,39 +81,7 @@
                                                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-12">
-
-                                                            <li class="d-inline-block me-2 mb-1">
-                                                                <div class="form-check">
-                                                                    <div class="custom-control custom-checkbox">
-                                                                        <label class="form-check-label" for="is_parent">Is
-                                                                            parent</label>
-                                                                        <input id="is_parent" type="checkbox" value="{{$category->is_parent}}"
-                                                                               class="form-check-input form-check-primary"
-                                                                               @if($category->is_parent === 1) checked @endif name="is_parent">
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 col-12  @if($category->is_parent === 1) d-none @endif" id="parent_cat">
-                                                <div class="form-group">
-                                                    <label for="country-floating">Parent Category</label>
-                                                    <select class="form-select" name="parent_id" id="parent_id">
-                                                        <option value="0">--Parent category--</option>
-                                                        @foreach($parent_cats as $pcats)
-                                                            <option @if($category->parent_id === $pcats->id) selected @endif  value="{{$pcats->id}}">{{$pcats->title}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        
                                             <div class="col-12 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">Submit
                                                 </button>

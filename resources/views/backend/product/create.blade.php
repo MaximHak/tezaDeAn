@@ -123,20 +123,20 @@
 
 
 
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="country-floating">Brands</label>
-                                                    <select class="form-select" name="brand_id" id="brand_id">
-                                                        <option value="">--Brands--</option>
-                                                        @foreach(\App\Models\Brand::get() as $brand)
-                                                            <option
-                                                                value="{{$brand->id}}">
-                                                                {{$brand->title}}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+{{--                                            <div class="col-md-6 col-12">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="country-floating">Brands</label>--}}
+{{--                                                    <select class="form-select" name="brand_id" id="brand_id">--}}
+{{--                                                        <option value="">--Brands--</option>--}}
+{{--                                                        @foreach(\App\Models\Brand::get() as $brand)--}}
+{{--                                                            <option--}}
+{{--                                                                value="{{$brand->id}}">--}}
+{{--                                                                {{$brand->title}}--}}
+{{--                                                            </option>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </select>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 
 
                                             <div class="col-md-6 col-12">
@@ -144,7 +144,7 @@
                                                     <label for="country-floating">Category</label>
                                                     <select  class="form-select" name="cat_id" id="category_id">
                                                         <option value="">--Categories--</option>
-                                                        @foreach(\App\Models\Category::where('is_parent',1)->get() as $cat)
+                                                        @foreach(\App\Models\Category::where('is_parent',0)->get() as $cat)
                                                             <option
                                                                 value="{{$cat->id}}">
                                                                 {{$cat->title}}
@@ -153,47 +153,17 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-
-                                            <div class="col-md-6 col-12 d-none" id="child_cat_div">
-                                                <div class="form-group">
-                                                    <label for="country-floating">Child Category</label>
-                                                    <select class="form-select" name="child_cat_id" id="child_cat_id">
-
-                                                    </select>
-                                                </div>
-                                            </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="country-floating">Vendors</label>
                                                     <select class="form-select" name="vendor_id" id="vendor_id">
                                                         <option value="">--Vendors--</option>
-                                                        @foreach(\App\Models\User::where('role','vendor')->get() as $vendor)
+                                                        @foreach(\App\Models\User::where('role','seller')->get() as $vendor)
                                                             <option
                                                                 value="{{$vendor->id}}">
-                                                                {{$vendor->full_name}}
+                                                                {{$vendor->username}}
                                                             </option>
                                                         @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="country-floating">Size</label>
-                                                    <select class="form-select" name="size" id="size">
-                                                        <option value="">--Size--</option>
-                                                        <option
-                                                            value="S" {{old('size') === 'S' ? 'selected' : ''}}>
-                                                            S
-                                                        </option>
-                                                        <option
-                                                            value="M" {{old('size') === 'M' ? 'selected' : ''}}>
-                                                            M
-                                                        </option>
-                                                        <option
-                                                            value="L" {{old('size') === 'L' ? 'selected' : ''}}>
-                                                            L
-                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>

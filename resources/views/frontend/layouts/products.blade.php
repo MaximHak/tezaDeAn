@@ -7,14 +7,12 @@
                     <img class="card-img" src="{{ $product->photo }}" alt="">
                     <ul class="card-product__imgOverlay">
                         <li>
-                            <button><i class="ti-search"></i></button>
+                            <button onclick="location.href='{{route('product.getProductByID',$product->id)}}';"><i class="ti-search"></i></button>
                         </li>
                         <li>
-                            <button><i class="ti-shopping-cart"></i></button>
+                            <button onclick="location.href='{{route('product.getProductByID',$product->id)}}';"><i class="ti-shopping-cart"></i></button>
                         </li>
-                        <li>
-                            <button><i class="ti-heart"></i></button>
-                        </li>
+
                     </ul>
                 </div>
                 <div class="card-body">
@@ -36,10 +34,10 @@
         </div>
 
     @endforeach
-    <div style="width: 100%;
-    margin-left: 41%;" class="text-center">
-        {{ $products->links() }}
-    </div>
+{{--    <div style="width: 100%;--}}
+{{--    margin-left: 41%;" class="text-center">--}}
+{{--        {{ $products->links() }}--}}
+{{--    </div>--}}
 @else
     <div class="col-md-6 col-lg-4">
         Nu am gasit produse!

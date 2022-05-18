@@ -52,7 +52,7 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->title}}</td>
-                                        <td>{!!html_entity_decode($item->description)!!}</td>
+
                                         <td>
 
                                             <input type="checkbox" name="toggle" value="{{$item->id}}"
@@ -88,17 +88,7 @@
                 </section>
             </div>
 
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">A. Saugi</a></p>
-                    </div>
-                </div>
-            </footer>
+
         </div>
     </div>
 @endsection

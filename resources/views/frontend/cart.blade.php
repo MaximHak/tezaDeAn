@@ -15,8 +15,8 @@
                     <thead>
                     <tr>
                         <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Preț</th>
+                        <th scope="col">Cantitate</th>
                         <th scope="col">Total</th>
                         <th scope="col"></th>
                     </tr>
@@ -63,7 +63,7 @@
 
                     <tr class="bottom_button">
                         <td>
-                            <a class="button " href="#">Update Cart</a>
+                            <a class="button " href="#">Actualizați coșul</a>
                         </td>
                         <td>
 
@@ -74,8 +74,8 @@
                         <td>
                             <div class="cupon_text d-flex align-items-center">
                                 <input type="text" placeholder="Coupon Code">
-                                <a class="primary-btn" href="#">Apply</a>
-                                <a class="button" href="#">Have a Coupon?</a>
+                                <a class="primary-btn" href="#">Aplica</a>
+                                <a class="button" href="#">Ai un cupon?</a>
                             </div>
                         </td>
                     </tr>
@@ -111,8 +111,8 @@
                         </td>
                         <td>
                             <div class="checkout_btn_inner d-flex align-items-center">
-                                <a style="width: 252px;" class="gray_btn" href="{{route('home')}}">Continue Shopping</a>
-                                <a style="width: 252px;" class="primary-btn ml-2" href="{{route('checkout')}}">Proceed to checkout</a>
+                                <a style="width: 252px;" class="gray_btn" href="{{route('home')}}">Continua cumparaturile</a>
+                                <a style="width: 252px;" class="primary-btn ml-2" href="{{route('checkout')}}">Finalizează cumpărăturile</a>
                             </div>
                         </td>
                     </tr>

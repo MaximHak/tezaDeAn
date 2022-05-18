@@ -15,10 +15,7 @@
                         <div class="hero-banner__content">
                             <h4>Cumpărăturile sunt distractive</h4>
                             <h1>Răsfoiți produsele noastre</h1>
-                            <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth
-                                without morning over third. Their male dry. They are great appear whose land fly
-                                grawebss.</p>
-                            <a class="button button-hero" href="{{route('products')}}">Browse Now</a>
+
                         </div>
                     </div>
                 </div>
@@ -26,43 +23,17 @@
         </section>
         <!--================ Hero banner start =================-->
 
-        <!--================ Hero Carousel start =================-->
-        <style>
-            /*.owl-item.cloned {*/
-            /*    width: 598px !important;*/
-            /*}*/
-
-            .owl-carousel .owl-item img {
-                width: 96% !important;
-                height: 238px !important;
-            }
-        </style>
-        <section class="section-margin mt-0">
-            <div class="owl-carousel owl-theme hero-carousel">
-                @foreach($vendors as $vendor)
-                    <div class="hero-carousel__slide">
-                        <img src="{{$vendor->photo}}" width="50" height="50" alt="" class="img-fluid">
-                        <a href="#" class="hero-carousel__slideOverlay">
-                            <h3>{{$vendor->username}}</h3>
-                            <p>{{\App\Models\City::where('id', $vendor->city_id)->pluck('title')->first()}}</p>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </section>
-
-        <!--================ Hero Carousel end =================-->
 
         <!-- ================ trending product section start ================= -->
         <section class="section-margin calc-60px">
             <div class="container">
                 <div class="section-intro pb-60px">
                     <p>Articole populare pe piață</p>
-                    <h2>Produse <span class="section-intro__style">de tendință</span></h2>
+                    <h2>Produse <span class="section-intro__style">noi</span></h2>
                 </div>
                 <div class="row">
 
-                    @foreach($products as $product)
+                    @foreach($new_products as $product)
                         <div class="col-md-6 col-lg-4 col-xl-3">
                             <div class="card text-center card-product">
                                 <div class="card-product__img">
@@ -82,7 +53,7 @@
                                 <div class="card-body">
                                     <p>{{\App\Models\User::where('id',$product->vendor_id)->pluck('username')->first()}}</p>
                                     <h4 style="height: 60px;" class="card-product__title"><a
-                                            href="{{route('product.getProductByID',$product->id)}}l">{{ $product->title }}</a>
+                                            href="{{route('product.getProductByID',$product->id)}}">{{ $product->title }}</a>
                                     </h4>
                                     @if($product->offer_price === NULL)
                                         <p class="card-product__price">{{ $product->price }} MDL</p>
@@ -129,7 +100,7 @@
                     <h2>Cele <span class="section-intro__style">mai vandute</span></h2>
                 </div>
                 <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-                    @foreach($products as $product)
+                    @foreach($popular_products as $product)
                         <div class="card text-center card-product">
                             <div class="card-product__img">
                                 <img class="img-fluid" style="width: 100%!important;height: auto!important;" src="{{$product->photo}}" alt="">
